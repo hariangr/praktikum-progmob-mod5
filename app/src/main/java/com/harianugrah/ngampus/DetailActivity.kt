@@ -23,6 +23,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+        setSupportActionBar(findViewById(R.id.toolbarDetail))
 
         val intent = getIntent();
 
@@ -40,6 +41,7 @@ class DetailActivity : AppCompatActivity() {
         val textNim = findViewById<TextView>(R.id.textNim);
         val textSex = findViewById<TextView>(R.id.textSex);
         val textAkt = findViewById<TextView>(R.id.textAkt);
+        supportActionBar?.title = "Detail " + detailUser.nick;
 
         textName.text = detailUser.name;
         textNick.text = detailUser.nick;
