@@ -1,5 +1,6 @@
 package com.harianugrah.ngampus
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -26,7 +27,9 @@ class ListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter =
             ListAdapter(users, fun(it) {
-                Log.v("ZZZZ", it.toString())
+                val intent = Intent(this, DetailActivity::class.java);
+                intent.putExtra(DetailActivity.INTENT_USER_ID, it.uid);
+                startActivity(intent);
             })
     }
 }
