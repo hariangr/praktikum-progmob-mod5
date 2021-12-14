@@ -61,5 +61,14 @@ class DetailActivity : AppCompatActivity() {
             finish();
             startActivity(intent);
         }
+
+
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, ListActivity::class.java);
+        finish();
+        startActivity(intent);
     }
 }
