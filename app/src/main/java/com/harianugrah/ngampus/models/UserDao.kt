@@ -17,9 +17,9 @@ interface UserDao {
     @Query("SELECT * FROM user WHERE uid == (:id)")
     fun getById(id: Int): User
 
-    @Query("SELECT * FROM user WHERE name LIKE :name OR " +
-            "nick LIKE :name LIMIT 1")
-    fun findByName(name: String): User
+    @Query("SELECT * FROM user WHERE name LIKE '%' || :name || '%' OR " +
+            "nick LIKE '%' || :name || '%'")
+    fun findByName(name: String): List<User>
 
     @Insert
     fun insertAll(vararg users: User)
