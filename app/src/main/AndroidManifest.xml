@@ -11,7 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ngampus.NoActionBar">
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".EditActivity" android:parentActivityName=".ListActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.harianugrah.ngampus.ListActivity" />
+        </activity>
+        <activity android:name=".DetailActivity" />
         <activity android:name=".ListActivity" />
         <activity android:name=".ProfileActivity" />
         <activity

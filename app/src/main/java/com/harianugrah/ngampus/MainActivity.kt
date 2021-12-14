@@ -6,7 +6,6 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.snackbar.Snackbar
@@ -30,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         val inputRadio = findViewById<RadioGroup>(R.id.radioGroup);
         val inputSeek = findViewById<SeekBar>(R.id.inputSeek);
         val inputCheck = findViewById<CheckBox>(R.id.checkBox);
+        val textAngkatan = findViewById<TextView>(R.id.textAngkatan2)
 
         inputImage = findViewById<ImageView>(R.id.imgPrev)
 
@@ -39,13 +39,25 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(gallery, IMAGE_PICK_ID);
         }
 
-        val btnSkip = findViewById<TextView>(R.id.btnSkip);
+        val btnSkip = findViewById<TextView>(R.id.btnCancel);
         btnSkip.setOnClickListener {
             val intent = Intent(this, ListActivity::class.java)
             startActivity(intent)
         }
 
-        val btnCampus = findViewById<Button>(R.id.btnCampus);
+        inputSeek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                textAngkatan.text = "Angkatan (" + p1 + ")"
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+        });
+
+        val btnCampus = findViewById<Button>(R.id.btnSaveEdit);
         btnCampus.setOnClickListener {
             val nameVal = inputName.editText!!.text.toString();
             val nickVal = inputNick.editText!!.text.toString();

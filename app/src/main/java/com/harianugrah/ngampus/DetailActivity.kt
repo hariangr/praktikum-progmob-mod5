@@ -45,7 +45,7 @@ class DetailActivity : AppCompatActivity() {
         textNick.text = detailUser.nick;
         textNim.text = detailUser.nim;
         textSex.text = if (detailUser.is_male) "Laki-laki" else "Perempuan";
-        textAkt.text = "20" + intent.getIntExtra("seek", 19).toString();
+        textAkt.text = "20" + detailUser.angkatan.toString();
 
         val decodedString: ByteArray = Base64.decode(detailUser.avatar_b64, Base64.DEFAULT)
         val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
@@ -62,6 +62,13 @@ class DetailActivity : AppCompatActivity() {
             startActivity(intent);
         }
 
+        btnEdit.setOnClickListener {
+            val intent = Intent(this, EditActivity::class.java);
+            intent.putExtra(EditActivity.INTENT_USER_ID, detailUser.uid);
+
+            finish();
+            startActivity(intent);
+        }
 
     }
 
