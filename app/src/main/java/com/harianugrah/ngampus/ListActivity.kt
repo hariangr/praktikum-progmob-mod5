@@ -29,7 +29,9 @@ class ListActivity : AppCompatActivity() {
             ListAdapter(users, fun(it) {
                 val intent = Intent(this, DetailActivity::class.java);
                 intent.putExtra(DetailActivity.INTENT_USER_ID, it.uid);
+                finish();
                 startActivity(intent);
+
             })
     }
 }

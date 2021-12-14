@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.harianugrah.ngampus.models.AppDatabase
@@ -43,11 +44,22 @@ class DetailActivity : AppCompatActivity() {
         textName.text = detailUser.name;
         textNick.text = detailUser.nick;
         textNim.text = detailUser.nim;
-        textSex.text = if (detailUser.is_male)  "Laki-laki" else "Perempuan";
+        textSex.text = if (detailUser.is_male) "Laki-laki" else "Perempuan";
         textAkt.text = "20" + intent.getIntExtra("seek", 19).toString();
 
         val decodedString: ByteArray = Base64.decode(detailUser.avatar_b64, Base64.DEFAULT)
         val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
         imgProfile.setImageBitmap(decodedByte)
+
+        val btnDelete = findViewById<Button>(R.id.btnDelete);
+        val btnEdit = findViewById<Button>(R.id.btnEdit);
+
+        btnDelete.setOnClickListener {
+            AppDatabase.getInstance(this).userDao().delete(detailUser);
+
+            val intent = Intent(this, ListActivity::class.java);
+            finish();
+            startActivity(intent);
+        }
     }
 }
