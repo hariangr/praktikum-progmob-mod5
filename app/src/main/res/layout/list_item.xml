@@ -58,6 +58,15 @@
                 android:paddingTop="4dp"
                 android:text="TextView" />
 
+            <TextView
+                android:id="@+id/liDesc2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:text="TextView"
+                android:textStyle="bold|italic" />
+
         </LinearLayout>
 
     </LinearLayout>
