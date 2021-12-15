@@ -1,4 +1,4 @@
-package com.harianugrah.ngampus
+package com.harianugrah.haemtei
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

@@ -1,4 +1,4 @@
-package com.harianugrah.ngampus
+package com.harianugrah.haemtei
 
 import android.content.ContentResolver
 import android.content.Context
