@@ -1,5 +1,6 @@
 package com.harianugrah.haemtei
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
@@ -11,6 +12,7 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
+import com.harianugrah.haemtei.models.AuthX
 import com.harianugrah.haemtei.models.ErrorResult
 import com.harianugrah.haemtei.models.LoginResult
 import org.json.JSONObject
@@ -41,9 +43,15 @@ class MainActivity : AppCompatActivity() {
             val loginReq = JsonObjectRequest(
                 Request.Method.POST, Constant.EP_LOGIN, jsonBody,
                 {
+                    val res = Gson().fromJson(it.toString(), LoginResult::class.java)
+                    val authX = AuthX(res.user!!.username!!, res.user!!.email!!, res!!.jwt!!)
 
-                Log.v(TAG, it["jwt"].toString())
+                    AuthSingleton.currentUser = authX;
 
+                    Toast.makeText(this, "Hi ${authX.username}", Toast.LENGTH_SHORT).show()
+
+                    val intent = Intent(this, ListActivity::class.java);
+                    startActivity(intent)
                 },
                 {
 

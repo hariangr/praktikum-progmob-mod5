@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class AuthX(
-    @ColumnInfo(name = "username") var name: String,
-    @ColumnInfo(name = "email") var nick: String,
-    @ColumnInfo(name = "jwtToken") var nim: String,
+    @ColumnInfo(name = "username") var username: String,
+    @ColumnInfo(name = "email") var email: String,
+    @ColumnInfo(name = "jwtToken") var jwtToken: String,
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
 )
 
