@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditActivity">
+    tools:context=".RegisterActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/registerToolbar"
@@ -28,10 +28,10 @@
         app:layout_constraintTop_toBottomOf="@+id/registerToolbar">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inPassword"
+            android:id="@+id/inName"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:hint="Nama"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,19 +43,19 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputPassword"
+            android:id="@+id/inPassword"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Nama Panggilan"
+            android:hint="Password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inPassword">
+            app:layout_constraintTop_toBottomOf="@+id/inName">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -67,7 +67,8 @@
             android:hint="NIM"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputPassword">
+            app:layout_constraintTop_toBottomOf="@+id/inAkt"
+            app:prefixText="19">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -83,7 +84,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
-            android:text="Jenis Kelamin"
+            android:text="Auto Login"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inNim" />
 
@@ -100,58 +101,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Laki-laki" />
+                android:text="Masuk otomatis" />
 
             <RadioButton
                 android:id="@+id/radioNotautolog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Perempuan" />
+                android:text="Ke halaman login" />
         </RadioGroup>
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="108dp"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-            tools:layout_editor_absoluteX="16dp">
-
-            <ImageView
-                android:id="@+id/imgPrev"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Bantu orang-orang untuk mengenalimu ketika kuliah offline nanti" />
-
-                <Button
-                    android:id="@+id/btnImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ganti Foto" />
-            </LinearLayout>
-        </LinearLayout>
 
         <TextView
             android:id="@+id/textAngkatan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:text="Angkatan (19)"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/inPassword"
             tools:layout_editor_absoluteX="8dp" />
 
         <SeekBar
@@ -169,15 +135,16 @@
             android:id="@+id/checkAgree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Saya menyetujui syarat dan ketentuan pengguna"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inAkt" />
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
         <Button
             android:id="@+id/btnRegisterNow"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Simpan"
+            android:text="Register"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkAgree" />
@@ -187,7 +154,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Batal"
+            android:text="Login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnRegisterNow" />

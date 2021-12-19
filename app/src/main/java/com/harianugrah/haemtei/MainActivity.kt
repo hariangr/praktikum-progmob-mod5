@@ -2,7 +2,6 @@ package com.harianugrah.haemtei
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -59,12 +58,19 @@ class MainActivity : AppCompatActivity() {
 
         queue = Volley.newRequestQueue(this)
 
-        val inputIdentifier = findViewById<TextInputLayout>(R.id.inputIdentifier);
+        val inputIdentifier = findViewById<TextInputLayout>(R.id.inPassword);
         val inputPassword = findViewById<TextInputLayout>(R.id.inputPassword);
 
         refreshList();
 
-        val btnLogin = findViewById<Button>(R.id.btnSaveEdit);
+        val btnRegister = findViewById<TextView>(R.id.btnToLogin)
+        btnRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java);
+            finish()
+            startActivity(intent)
+        }
+
+        val btnLogin = findViewById<Button>(R.id.btnRegisterNow);
         btnLogin.setOnClickListener {
             val identifierVal = inputIdentifier.editText!!.text.toString();
             val passwordVal = inputPassword.editText!!.text.toString();

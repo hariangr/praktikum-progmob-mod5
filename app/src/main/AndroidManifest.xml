@@ -10,21 +10,24 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Ngampus.NoActionBar">
-        <activity android:name="com.harianugrah.haemtei.EditActivity" android:parentActivityName="com.harianugrah.haemtei.ListActivity">
+        android:theme="@style/Theme.Ngampus.NoActionBar"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".RegisterActivity"></activity>
+        <activity
+            android:name=".EditActivity"
+            android:parentActivityName=".ListActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.harianugrah.haemtei.ListActivity" />
         </activity>
-        <activity android:name="com.harianugrah.haemtei.DetailActivity" />
-        <activity android:name="com.harianugrah.haemtei.ListActivity" />
-        <activity android:name="com.harianugrah.haemtei.ProfileActivity" />
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".ListActivity" />
+        <activity android:name=".ProfileActivity" />
         <activity
-            android:name="com.harianugrah.haemtei.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
