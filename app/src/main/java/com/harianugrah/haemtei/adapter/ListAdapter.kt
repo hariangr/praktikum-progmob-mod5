@@ -12,7 +12,6 @@ import com.harianugrah.haemtei.Constant
 import com.harianugrah.haemtei.R
 import com.harianugrah.haemtei.models.Oprec
 import com.squareup.picasso.Picasso
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -24,11 +23,11 @@ class ListAdapter(
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val liImage = itemView.findViewById<ImageView>(R.id.liImage)
-        val liTitle = itemView.findViewById<TextView>(R.id.liTitle)
+        val liTitle = itemView.findViewById<TextView>(R.id.licUsername)
         val liRight = itemView.findViewById<TextView>(R.id.liRight)
         val liDesc = itemView.findViewById<TextView>(R.id.liDesc)
-        val liDesc2 = itemView.findViewById<TextView>(R.id.liDesc2)
-        val liCardContainer = itemView.findViewById<CardView>(R.id.liCardContainer)
+        val liDesc2 = itemView.findViewById<TextView>(R.id.licEmail)
+        val liCardContainer = itemView.findViewById<CardView>(R.id.licCardContainer)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {

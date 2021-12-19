@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
@@ -12,6 +14,7 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
+import com.harianugrah.haemtei.adapter.ListAdapterAccount
 import com.harianugrah.haemtei.models.AppDatabase
 import com.harianugrah.haemtei.models.AuthX
 import com.harianugrah.haemtei.models.ErrorResult
@@ -22,6 +25,33 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity() {
     val TAG = "LOGIN_MAINACT";
     lateinit var queue: RequestQueue;
+    lateinit var recyclerView: RecyclerView;
+    var authxList: ArrayList<AuthX> = ArrayList();
+
+    fun refreshList() {
+        val authxs = AppDatabase.getInstance(this).authXDao().getAll();
+        authxList.clear();
+        authxList.addAll(authxs);
+        recyclerView = findViewById<RecyclerView>(R.id.rvAuthx)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter =
+            ListAdapterAccount(authxList, fun(toShow) {
+                AuthSingleton.currentUser = toShow;
+
+                Toast.makeText(this, "Hi ${toShow.username}", Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(this, ListActivity::class.java);
+                startActivity(intent)
+            }, fun(toDel) {
+                AppDatabase.getInstance(this).authXDao().delete(toDel)
+                refreshList()
+            })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refreshList();
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +61,8 @@ class MainActivity : AppCompatActivity() {
 
         val inputIdentifier = findViewById<TextInputLayout>(R.id.inputIdentifier);
         val inputPassword = findViewById<TextInputLayout>(R.id.inputPassword);
+
+        refreshList();
 
         val btnLogin = findViewById<Button>(R.id.btnSaveEdit);
         btnLogin.setOnClickListener {

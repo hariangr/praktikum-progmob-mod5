@@ -31,6 +31,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:mt_hint="Cari teman"
         app:mt_maxSuggestionsCount="10"
-        app:mt_placeholder="Ngampus"
+        app:mt_placeholder="Cari Oprec"
         app:mt_speechMode="false" />
 </androidx.constraintlayout.widget.ConstraintLayout>
