@@ -12,6 +12,7 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
+import com.harianugrah.haemtei.models.AppDatabase
 import com.harianugrah.haemtei.models.AuthX
 import com.harianugrah.haemtei.models.ErrorResult
 import com.harianugrah.haemtei.models.LoginResult
@@ -45,6 +46,8 @@ class MainActivity : AppCompatActivity() {
                 {
                     val res = Gson().fromJson(it.toString(), LoginResult::class.java)
                     val authX = AuthX(res.user!!.username!!, res.user!!.email!!, res!!.jwt!!)
+
+                    AppDatabase.getInstance(this).authXDao().insertAll(authX)
 
                     AuthSingleton.currentUser = authX;
 

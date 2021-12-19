@@ -68,9 +68,9 @@ class ListAdapter(
 //            val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
 //            holder.liImage.setImageBitmap(decodedByte)
 //
-//            holder.liCardContainer.setOnClickListener {
-//                this.onItemClickListener(item)
-//            }
+            holder.liCardContainer.setOnClickListener {
+                this.onItemClickListener(item)
+            }
 //        } finally {
 //
 //        }

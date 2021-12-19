@@ -36,10 +36,10 @@ class ListActivity : AppCompatActivity(), MaterialSearchBar.OnSearchActionListen
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter =
             ListAdapter(oprecs, fun(it) {
-//                val intent = Intent(this, DetailActivity::class.java);
-//                intent.putExtra(DetailActivity.INTENT_USER_ID, it.uid);
-//                finish();
-//                startActivity(intent);
+                val intent = Intent(this, DetailActivity::class.java);
+                intent.putExtra(DetailActivity.INTENT_OPREC_ID, it.id);
+                finish();
+                startActivity(intent);
 
             })
 

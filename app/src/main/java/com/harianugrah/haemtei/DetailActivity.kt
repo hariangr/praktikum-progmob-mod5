@@ -14,22 +14,22 @@ import java.lang.Exception
 class DetailActivity : AppCompatActivity() {
 //    lateinit var detailRoomUser: RoomUser;
 //
-//    companion object {
-//        val INTENT_USER_ID = "ID_USER_PASSED_HERE";
-//    }
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_detail)
-//        setSupportActionBar(findViewById(R.id.toolbarDetail))
-//
-//        val intent = getIntent();
-//
-//        val user_id_to_show = intent.getIntExtra(INTENT_USER_ID, -1);
-//
-//        if (user_id_to_show == -1) {
-//            throw Exception("Not valid user id")
-//        }
+    companion object {
+        val INTENT_OPREC_ID = "ID_OPREC_PASSED_HERE";
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_detail)
+        setSupportActionBar(findViewById(R.id.toolbarDetail))
+
+        val intent = getIntent();
+
+        val oprec_id_to_show = intent.getIntExtra(INTENT_OPREC_ID, -1);
+
+        if (oprec_id_to_show == -1) {
+            throw Exception("Not valid user id")
+        }
 //
 //        detailRoomUser = AppDatabase.getInstance(this).userDao().getById(user_id_to_show);
 //
@@ -50,10 +50,10 @@ class DetailActivity : AppCompatActivity() {
 //        val decodedString: ByteArray = Base64.decode(detailRoomUser.avatar_b64, Base64.DEFAULT)
 //        val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
 //        imgProfile.setImageBitmap(decodedByte)
-//
+
 //        val btnDelete = findViewById<Button>(R.id.btnDelete);
 //        val btnEdit = findViewById<Button>(R.id.btnEdit);
-//
+
 //        btnDelete.setOnClickListener {
 //            AppDatabase.getInstance(this).userDao().delete(detailRoomUser);
 //
@@ -69,8 +69,8 @@ class DetailActivity : AppCompatActivity() {
 //            finish();
 //            startActivity(intent);
 //        }
-//
-//    }
+
+    }
 //
 //    override fun onBackPressed() {
 //        super.onBackPressed()
