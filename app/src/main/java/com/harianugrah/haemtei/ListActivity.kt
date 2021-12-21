@@ -96,5 +96,25 @@ class ListActivity : AppCompatActivity(), MaterialSearchBar.OnSearchActionListen
         doSearch(text.toString())
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        doSearch(null)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        doSearch(null)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        doSearch(null)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.v(TAG, "Bye")
+    }
+
     override fun onButtonClicked(buttonCode: Int) {}
 }
