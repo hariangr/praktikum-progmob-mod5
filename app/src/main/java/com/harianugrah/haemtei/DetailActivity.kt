@@ -95,8 +95,8 @@ class DetailActivity : AppCompatActivity() {
                 textDesc.text = data?.description ?: "-"
                 textOwner.text = data?.owner?.username
 
-                val dateStart = data?.startDate?.split("T")?.get(0)
-                val dateEnd = data?.startDate?.split("T")?.get(0)
+                val dateStart = data?.startDate?.split("T")?.get(0) ?: "-"
+                val dateEnd = data?.startDate?.split("T")?.get(0) ?: "-"
                 textStart.text = dateStart
                 textEnd.text = dateEnd
 

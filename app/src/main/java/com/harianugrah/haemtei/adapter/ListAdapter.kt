@@ -55,8 +55,8 @@ class ListAdapter(
             holder.liRight.text = item.owner?.username
         }
 
-        val dateStart = item.startDate?.split("T")?.get(0)
-        val dateEnd = item.startDate?.split("T")?.get(0)
+        val dateStart = item.startDate?.split("T")?.get(0) ?: "-"
+        val dateEnd = item.startDate?.split("T")?.get(0) ?: "-"
         holder.liDesc.text = """Dimulai dari $dateStart
             |Ditutup pada $dateEnd
             |${if (item.description != null) item.description else ""}
