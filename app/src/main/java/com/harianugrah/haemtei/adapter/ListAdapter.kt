@@ -1,5 +1,6 @@
 package com.harianugrah.haemtei.adapter
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +8,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
+import com.harianugrah.haemtei.AuthSingleton
 import com.harianugrah.haemtei.Constant
 import com.harianugrah.haemtei.R
 import com.harianugrah.haemtei.models.Oprec
@@ -16,6 +20,7 @@ import java.util.*
 
 
 class ListAdapter(
+    val context: Context,
     private val userlist: List<Oprec>,
     val onItemClickListener: (Oprec) -> Unit,
 ) :
@@ -40,7 +45,15 @@ class ListAdapter(
 
         holder.liTitle.text = item.title
 
-        holder.liRight.text = item.owner?.username
+        if (AuthSingleton.currentUser?.username == item.owner?.username) {
+            holder.liRight.text = "Owner"
+            holder.liRight.setBackgroundColor(context.getColor(R.color.blueColorEntah));
+            holder.liRight.setTextColor(context.getColor(R.color.white))
+        } else {
+            holder.liRight.setBackgroundColor(context.getColor(R.color.white));
+            holder.liRight.setTextColor(context.getColor(R.color.blueColorEntah))
+            holder.liRight.text = item.owner?.username
+        }
 
         val dateStart = item.startDate?.split("T")?.get(0)
         val dateEnd = item.startDate?.split("T")?.get(0)
