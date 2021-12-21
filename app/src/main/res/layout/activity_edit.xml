@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/registerToolbar">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inPassword"
+            android:id="@+id/regPassword"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
             android:hint="Nama Panggilan"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inPassword">
+            app:layout_constraintTop_toBottomOf="@+id/regPassword">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -59,7 +59,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inNim"
+            android:id="@+id/regNim"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
             android:layout_weight="1"
             android:text="Jenis Kelamin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inNim" />
+            app:layout_constraintTop_toBottomOf="@+id/regNim" />
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -155,7 +155,7 @@
             tools:layout_editor_absoluteX="8dp" />
 
         <SeekBar
-            android:id="@+id/inAkt"
+            android:id="@+id/regAkt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:indeterminate="false"
@@ -171,10 +171,10 @@
             android:layout_height="wrap_content"
             android:text="Saya menyetujui syarat dan ketentuan pengguna"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inAkt" />
+            app:layout_constraintTop_toBottomOf="@+id/regAkt" />
 
         <Button
-            android:id="@+id/btnRegisterNow"
+            android:id="@+id/btnRegRegist"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Simpan"
@@ -190,7 +190,7 @@
             android:text="Batal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnRegisterNow" />
+            app:layout_constraintTop_toBottomOf="@+id/btnRegRegist" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

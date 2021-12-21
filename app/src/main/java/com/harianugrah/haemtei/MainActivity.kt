@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
         queue = Volley.newRequestQueue(this)
 
-        val inputIdentifier = findViewById<TextInputLayout>(R.id.inPassword);
+        val inputIdentifier = findViewById<TextInputLayout>(R.id.regPassword);
         val inputPassword = findViewById<TextInputLayout>(R.id.inputPassword);
 
         refreshList();
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val btnLogin = findViewById<Button>(R.id.btnRegisterNow);
+        val btnLogin = findViewById<Button>(R.id.btnRegRegist);
         btnLogin.setOnClickListener {
             val identifierVal = inputIdentifier.editText!!.text.toString();
             val passwordVal = inputPassword.editText!!.text.toString();
