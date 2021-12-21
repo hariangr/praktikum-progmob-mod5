@@ -105,9 +105,23 @@ class DetailActivity : AppCompatActivity() {
                 }
 
 
-                val imgUrl = Constant.BASE_URL +data?.thumbnail?.formats?.medium?.url
-                Picasso.get().load(imgUrl)
-                    .into(imgPoster);
+                if (data?.thumbnail != null) {
+                    val imgUrl = Constant.BASE_URL + data?.thumbnail?.formats?.large?.url
+                    Log.v("IMG URL", imgUrl)
+                    Picasso.get().load(imgUrl)
+                        .into(imgPoster);
+                }
+
+                if (data?.thumbstr != null) {
+                    try {
+                        val decodedString: ByteArray = Base64.decode(data?.thumbstr, Base64.DEFAULT)
+                        val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+                        imgPoster.setImageBitmap(decodedByte)
+                    } catch (ex: Exception) {
+                        Log.e("wwww", ex.toString())
+                    }
+                }
+
             },
             {
 

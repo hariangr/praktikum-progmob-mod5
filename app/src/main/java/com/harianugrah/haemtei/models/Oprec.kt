@@ -13,6 +13,7 @@ data class Oprec(
     @SerializedName("updatedAt") var updatedAt: String? = null,
     @SerializedName("publishedAt") var publishedAt: String? = null,
     @SerializedName("owner") var owner: User? = User(),
+    @SerializedName("thumbstr") var thumbstr: String? = null,
     @SerializedName("sies") var sies: List<Sie> = arrayListOf(),
     @SerializedName("registered") var registered: Boolean? = null,
     @SerializedName("thumbnail" ) var thumbnail : ApiImage? = ApiImage()

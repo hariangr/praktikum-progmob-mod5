@@ -1,6 +1,8 @@
 package com.harianugrah.haemtei.adapter
 
 import android.content.Context
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +18,7 @@ import com.harianugrah.haemtei.Constant
 import com.harianugrah.haemtei.R
 import com.harianugrah.haemtei.models.Oprec
 import com.squareup.picasso.Picasso
+import java.lang.Exception
 import java.util.*
 
 
@@ -69,11 +72,24 @@ class ListAdapter(
             holder.liDesc2.visibility = View.GONE
         }
 
-        val imgUrl = Constant.BASE_URL + item.thumbnail?.formats?.large?.url
-        Log.v("IMG URL", imgUrl)
-        Picasso.get().load(imgUrl)
-            .into(holder.liImage);
-//
+        if (item.thumbnail != null) {
+            val imgUrl = Constant.BASE_URL + item.thumbnail?.formats?.large?.url
+            Log.v("IMG URL", imgUrl)
+            Picasso.get().load(imgUrl)
+                .into(holder.liImage);
+        }
+
+        if (item.thumbstr != null) {
+            try {
+                val decodedString: ByteArray = Base64.decode(item.thumbstr, Base64.DEFAULT)
+                val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+                holder.liImage.setImageBitmap(decodedByte)
+            } catch (ex: Exception) {
+                Log.e("wwww", ex.toString())
+            }
+        }
+
+
 //
 //        try {
 //            val decodedString: ByteArray = Base64.decode(item.avatar_b64, Base64.DEFAULT)
