@@ -16,6 +16,7 @@ import java.util.*
 class ListAdapterAccount(
     private val authXlist: List<AuthX>,
     val onItemClickListener: (AuthX) -> Unit,
+    val onEditClickListener: (AuthX) -> Unit,
     val onDeleteClickListener: (AuthX) -> Unit,
 ) :
     RecyclerView.Adapter<ListAdapterAccount.ListViewHolder>() {
@@ -25,6 +26,7 @@ class ListAdapterAccount(
         val licEmail = itemView.findViewById<TextView>(R.id.licUsername)
         val licCardContainer = itemView.findViewById<CardView>(R.id.licCardContainer)
         val licDelete = itemView.findViewById<ImageButton>(R.id.licDelete)
+        val licEdit = itemView.findViewById<ImageButton>(R.id.licEdit)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -44,6 +46,10 @@ class ListAdapterAccount(
             this.onItemClickListener(item)
         }
 
+        holder.licEdit.setOnClickListener {
+            this.onEditClickListener(item)
+        }
+        
         holder.licDelete.setOnClickListener {
             this.onDeleteClickListener(item)
         }

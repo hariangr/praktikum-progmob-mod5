@@ -41,7 +41,11 @@ class MainActivity : AppCompatActivity() {
 
                 val intent = Intent(this, ListActivity::class.java);
                 startActivity(intent)
-            }, fun(toDel) {
+            }, fun(toEdit) {
+                val intent = Intent(this, EditActivity::class.java);
+                intent.putExtra(EditActivity.INTENT_AUTHX, toEdit.id)
+                startActivity(intent)
+            },fun(toDel) {
                 AppDatabase.getInstance(this).authXDao().delete(toDel)
                 refreshList()
             })
