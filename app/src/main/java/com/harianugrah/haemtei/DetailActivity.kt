@@ -5,15 +5,29 @@ import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
 import com.harianugrah.haemtei.models.AppDatabase
+import com.harianugrah.haemtei.models.OneOprecResult
+import com.harianugrah.haemtei.models.OprecsResult
+import com.squareup.picasso.Picasso
 import java.lang.Exception
 
 class DetailActivity : AppCompatActivity() {
-//    lateinit var detailRoomUser: RoomUser;
-//
+    val TAG = "DETAIL_ACT";
+
+    //    lateinit var detailRoomUser: RoomUser;
+    lateinit var queue: RequestQueue;
+
+    //
     companion object {
         val INTENT_OPREC_ID = "ID_OPREC_PASSED_HERE";
     }
@@ -23,6 +37,15 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
         setSupportActionBar(findViewById(R.id.toolbarDetail))
 
+        queue = Volley.newRequestQueue(this)
+
+        val textTitle = findViewById<TextView>(R.id.textTitle)
+        val textDesc = findViewById<TextView>(R.id.textDesc)
+        val textStart = findViewById<TextView>(R.id.textStartDate)
+        val textEnd = findViewById<TextView>(R.id.textEndDate)
+        val textOwner = findViewById<TextView>(R.id.textOfferer)
+        val imgPoster = findViewById<ImageView>(R.id.imgPoster)
+
         val intent = getIntent();
 
         val oprec_id_to_show = intent.getIntExtra(INTENT_OPREC_ID, -1);
@@ -30,6 +53,48 @@ class DetailActivity : AppCompatActivity() {
         if (oprec_id_to_show == -1) {
             throw Exception("Not valid user id")
         }
+
+        val detailReq = object : JsonObjectRequest(
+            Request.Method.GET, Constant.EP_OPREC_ONE + "/" + oprec_id_to_show, null,
+            {
+                val res = Gson().fromJson(it.toString(), OneOprecResult::class.java)
+                val data = res.data
+
+                textTitle.text = data?.title;
+                textDesc.text = data?.description ?: "-"
+                textOwner.text = data?.owner?.username
+
+                val dateStart = data?.startDate?.split("T")?.get(0)
+                val dateEnd = data?.startDate?.split("T")?.get(0)
+                textStart.text = dateStart
+                textEnd.text = dateEnd
+
+
+                val imgUrl = Constant.BASE_URL +data?.thumbnail?.formats?.medium?.url
+                Picasso.get().load(imgUrl)
+                    .into(imgPoster);
+            },
+            {
+
+                Snackbar.make(
+                    textTitle,
+                    "Ada yang salah",
+                    Snackbar.LENGTH_SHORT
+                ).show();
+
+            },
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                val token = AuthSingleton.currentUser!!.jwtToken;
+                headers["Authorization"] = "Bearer $token"
+                return headers
+            }
+        }
+
+        detailReq.tag = TAG
+
+        queue.add(detailReq)
 //
 //        detailRoomUser = AppDatabase.getInstance(this).userDao().getById(user_id_to_show);
 //

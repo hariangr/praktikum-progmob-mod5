@@ -41,14 +41,14 @@ class   ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        imgProfile = findViewById(R.id.imgProfile);
+        imgProfile = findViewById(R.id.imgPoster);
 
         val textProfil = findViewById<TextView>(R.id.textProfil);
-        val textName = findViewById<TextView>(R.id.textName);
-        val textNick = findViewById<TextView>(R.id.textNick);
-        val textNim = findViewById<TextView>(R.id.textNim);
-        val textSex = findViewById<TextView>(R.id.textSex);
-        val textAkt = findViewById<TextView>(R.id.textAkt);
+        val textName = findViewById<TextView>(R.id.textTitle);
+        val textNick = findViewById<TextView>(R.id.textDesc);
+        val textNim = findViewById<TextView>(R.id.textStartDate);
+        val textSex = findViewById<TextView>(R.id.textEndDate);
+        val textAkt = findViewById<TextView>(R.id.textOfferer);
 
         textProfil.text = "Profil " + intent.getStringExtra("nick");
         textName.text = intent.getStringExtra("name");

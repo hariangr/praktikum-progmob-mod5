@@ -15,10 +15,10 @@
         android:theme="?attr/actionBarTheme" />
 
     <ImageView
-        android:id="@+id/imgProfile"
-        android:layout_width="wrap_content"
+        android:id="@+id/imgPoster"
+        android:layout_width="0dp"
         android:layout_height="196dp"
-        android:scaleType="fitCenter"
+        android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         android:layout_height="0dp"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgProfile">
+        app:layout_constraintTop_toBottomOf="@+id/imgPoster">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -61,13 +61,13 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nama"
+            android:text="Judul"
             android:textColor="@color/blueColorEntah"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         <TextView
-            android:id="@+id/textName"
+            android:id="@+id/textTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -78,7 +78,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <TextView
-            android:id="@+id/textNick"
+            android:id="@+id/textDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -93,13 +93,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Nama Panggilan"
+            android:text="Deskripsi"
             android:textColor="@color/blueColorEntah"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textName" />
+            app:layout_constraintTop_toBottomOf="@+id/textTitle" />
 
         <TextView
-            android:id="@+id/textNim"
+            android:id="@+id/textStartDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -114,23 +114,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="NIM"
+            android:text="Tanggal Mulai"
             android:textColor="@color/blueColorEntah"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textNick" />
+            app:layout_constraintTop_toBottomOf="@+id/textDesc" />
 
         <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Jenis Kelamin"
+            android:text="Tanggal Selesai"
             android:textColor="@color/blueColorEntah"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textNim" />
+            app:layout_constraintTop_toBottomOf="@+id/textStartDate" />
 
         <TextView
-            android:id="@+id/textSex"
+            android:id="@+id/textEndDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -141,7 +141,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
         <TextView
-            android:id="@+id/textAkt"
+            android:id="@+id/textOfferer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -156,10 +156,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Angkatan"
+            android:text="Oleh"
             android:textColor="@color/blueColorEntah"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textSex" />
+            app:layout_constraintTop_toBottomOf="@+id/textEndDate" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
