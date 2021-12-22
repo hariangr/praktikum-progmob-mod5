@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ngampus.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".CreateActivity"></activity>
+        <activity android:name=".RegisterActivity" />
         <activity
             android:name=".EditActivity"
             android:parentActivityName=".ListActivity">

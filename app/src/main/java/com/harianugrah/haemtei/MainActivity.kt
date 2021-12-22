@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                 Request.Method.POST, Constant.EP_LOGIN, jsonBody,
                 {
                     val res = Gson().fromJson(it.toString(), LoginResult::class.java)
-                    val authX = AuthX(res.user!!.username!!, res.user!!.email!!, res!!.jwt!!)
+                    val authX = AuthX(res.user!!.username!!, res.user!!.email!!, res!!.jwt!!, res!!.user!!.id)
 
                     AppDatabase.getInstance(this).authXDao().insertAll(authX)
 

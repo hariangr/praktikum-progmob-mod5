@@ -11,6 +11,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.harianugrah.haemtei.adapter.ListAdapter
@@ -31,6 +32,12 @@ class ListActivity : AppCompatActivity(), MaterialSearchBar.OnSearchActionListen
         setContentView(R.layout.activity_list)
 
         queue = Volley.newRequestQueue(this)
+
+        val fabCreate = findViewById<FloatingActionButton>(R.id.fabCreate)
+        fabCreate.setOnClickListener {
+            val intent = Intent(this, CreateActivity::class.java);
+            startActivity(intent);
+        }
 
         recyclerView = findViewById<RecyclerView>(R.id.recyclerList)
         recyclerView.layoutManager = LinearLayoutManager(this)
