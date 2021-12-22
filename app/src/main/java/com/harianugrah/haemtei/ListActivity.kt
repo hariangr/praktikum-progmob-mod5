@@ -58,9 +58,15 @@ class ListActivity : AppCompatActivity(), MaterialSearchBar.OnSearchActionListen
 
     fun doSearch(q: String?) {
         Log.v("lkjn", Constant.EP_FIND_OPREC)
-        val loginReq = object : JsonObjectRequest(
 
-            Request.Method.GET, Constant.EP_FIND_OPREC, null,
+        var ep = Constant.EP_FIND_OPREC
+        if (q != null) {
+            ep += "?{{baseUrl}}/oprecs?filters[\$or][0][title][\$contains]=$q&filters[\$or][1][description][\$contains]=$q"
+            Log.v(TAG, ep)
+        }
+
+        val loginReq = object : JsonObjectRequest(
+            Request.Method.GET, ep, null,
             {
                 val res = Gson().fromJson(it.toString(), OprecsResult::class.java)
 
