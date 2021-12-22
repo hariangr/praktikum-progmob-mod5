@@ -88,8 +88,34 @@
                         android:layout_height="wrap_content"
                         android:text="Ganti Poster" />
                 </LinearLayout>
+
             </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Tanggal Dimulai" />
+
+            <TextView
+                android:id="@+id/tglStart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tidak diset"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Tanggal Selesai" />
+
+            <TextView
+                android:id="@+id/tglEnd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tidak diset"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </LinearLayout>
     </ScrollView>
 

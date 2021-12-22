@@ -1,5 +1,6 @@
 package com.harianugrah.haemtei
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
@@ -15,10 +17,11 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
-import com.harianugrah.haemtei.models.AuthX
 import com.harianugrah.haemtei.models.ErrorResult
-import com.harianugrah.haemtei.models.OprecsResult
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 class CreateActivity : AppCompatActivity() {
     val IMAGE_PICK_ID = 101;
@@ -27,6 +30,11 @@ class CreateActivity : AppCompatActivity() {
     lateinit var inputImage: ImageView;
     private var imageUri: Uri? = null;
     lateinit var queue: RequestQueue;
+
+    var calStart = Calendar.getInstance()
+    var calStartSet = false;
+    var calEnd = Calendar.getInstance()
+    var calEndSet = false;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +54,57 @@ class CreateActivity : AppCompatActivity() {
 
         val crtTitle = findViewById<TextInputLayout>(R.id.crtTitle)
         val crtDesc = findViewById<TextInputLayout>(R.id.crtDesc)
+        val tglStartLbl = findViewById<TextView>(R.id.tglStart)
+        val tglEndLbl = findViewById<TextView>(R.id.tglEnd)
+
+// Start Date
+        val dateStartListener =
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                calStart.set(Calendar.YEAR, year)
+                calStart.set(Calendar.MONTH, monthOfYear)
+                calStart.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                calStartSet = true;
+
+                val myFormat = "dd MMM yyy" // mention the format you need
+                val sdf = SimpleDateFormat(myFormat, Locale.US)
+                tglStartLbl!!.text = sdf.format(calStart.getTime())
+            }
+        tglStartLbl.setOnClickListener {
+            DatePickerDialog(
+                this,
+                dateStartListener,
+                // set DatePickerDialog to point to today's date when it loads up
+                calStart.get(Calendar.YEAR),
+                calStart.get(Calendar.MONTH),
+                calStart.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+// End Date
+        val dateEndListener =
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                calEnd.set(Calendar.YEAR, year)
+                calEnd.set(Calendar.MONTH, monthOfYear)
+                calEnd.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                calEndSet = true
+
+                val myFormat = "dd MMM yyyy" // mention the format you need
+                val sdf = SimpleDateFormat(myFormat, Locale.US)
+                tglEndLbl!!.text = sdf.format(calEnd.getTime())
+                Log.v(TAG, calEnd.time.toGMTString())
+            }
+        tglEndLbl.setOnClickListener {
+            DatePickerDialog(
+                this,
+                dateEndListener,
+                // set DatePickerDialog to point to today's date when it loads up
+                calEnd.get(Calendar.YEAR),
+                calEnd.get(Calendar.MONTH),
+                calEnd.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+
 
         val btnCreate = findViewById<Button>(R.id.btnCrt)
         btnCreate.setOnClickListener {
@@ -56,6 +115,12 @@ class CreateActivity : AppCompatActivity() {
             jsonBody.put("description", crtDesc.editText!!.text)
             jsonBody.put("thumbstr", base64img)
             jsonBody.put("owner", AuthSingleton.currentUser!!.model_id)
+            if (calStartSet) {
+                jsonBody.put("start_date", datetimeToIso(calStart))
+            }
+            if (calEndSet) {
+                jsonBody.put("end_date", datetimeToIso(calEnd))
+            }
 
             val jsonBodyData = JSONObject()
             jsonBodyData.put("data", jsonBody)
@@ -101,6 +166,11 @@ class CreateActivity : AppCompatActivity() {
 
             queue.add(createReq)
         }
+    }
+
+    fun datetimeToIso(s: Calendar) : String {
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+        return sdf.format(s.getTime())
     }
 
 
