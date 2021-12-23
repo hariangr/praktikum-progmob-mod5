@@ -1,8 +1,10 @@
 package com.harianugrah.haemtei
 
+import android.R.string.no
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.BitmapFactory
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
@@ -10,17 +12,17 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
-import com.harianugrah.haemtei.models.AppDatabase
 import com.harianugrah.haemtei.models.OneOprecResult
-import com.harianugrah.haemtei.models.OprecsResult
 import com.squareup.picasso.Picasso
-import java.lang.Exception
+
 
 class DetailActivity : AppCompatActivity() {
     val TAG = "DETAIL_ACT";
@@ -78,7 +80,17 @@ class DetailActivity : AppCompatActivity() {
                 }
             }
 
-            queue.add(deleteReq)
+
+            AlertDialog.Builder(this)
+                .setTitle("Oprec")
+                .setMessage("Yakin menghapus oprec??")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes,
+                    DialogInterface.OnClickListener { dialog, whichButton ->
+                        queue.add(deleteReq)
+                    })
+                .setNegativeButton(no, null).show()
+
         }
 
         if (oprec_id_to_show == -1) {
@@ -115,7 +127,8 @@ class DetailActivity : AppCompatActivity() {
                 if (data?.thumbstr != null) {
                     try {
                         val decodedString: ByteArray = Base64.decode(data?.thumbstr, Base64.DEFAULT)
-                        val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+                        val decodedByte =
+                            BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
                         imgPoster.setImageBitmap(decodedByte)
                     } catch (ex: Exception) {
                         Log.e("wwww", ex.toString())
@@ -145,7 +158,8 @@ class DetailActivity : AppCompatActivity() {
 
         queue.add(detailReq)
     }
-//
+
+    //
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, ListActivity::class.java);

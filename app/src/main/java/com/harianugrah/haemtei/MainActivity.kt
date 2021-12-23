@@ -1,5 +1,7 @@
 package com.harianugrah.haemtei
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
@@ -46,8 +48,17 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra(EditActivity.INTENT_AUTHX, toEdit.id)
                 startActivity(intent)
             },fun(toDel) {
-                AppDatabase.getInstance(this).authXDao().delete(toDel)
-                refreshList()
+                AlertDialog.Builder(this)
+                    .setTitle("Logout")
+                    .setMessage("Yakin logout dari akun?")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton(android.R.string.yes,
+                        DialogInterface.OnClickListener { dialog, whichButton ->
+                            AppDatabase.getInstance(this).authXDao().delete(toDel)
+                            refreshList()
+                        })
+                    .setNegativeButton(android.R.string.no, null).show()
+
             })
     }
 
