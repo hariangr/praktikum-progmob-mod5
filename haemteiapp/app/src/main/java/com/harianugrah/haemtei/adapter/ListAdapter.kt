@@ -52,6 +52,10 @@ class ListAdapter(
             holder.liRight.text = "Owner"
             holder.liRight.setBackgroundColor(context.getColor(R.color.blueColorEntah));
             holder.liRight.setTextColor(context.getColor(R.color.white))
+        } else if (item.owner?.id == null) {
+            holder.liRight.text = "No Owner"
+            holder.liRight.setBackgroundColor(context.getColor(R.color.blueColorEntah));
+            holder.liRight.setTextColor(context.getColor(R.color.white))
         } else {
             holder.liRight.setBackgroundColor(context.getColor(R.color.white));
             holder.liRight.setTextColor(context.getColor(R.color.blueColorEntah))

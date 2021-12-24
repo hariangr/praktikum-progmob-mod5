@@ -61,7 +61,7 @@ class ListActivity : AppCompatActivity(), MaterialSearchBar.OnSearchActionListen
 
         var ep = Constant.EP_FIND_OPREC
         if (q != null) {
-            ep += "?{{baseUrl}}/oprecs?filters[\$or][0][title][\$contains]=$q&filters[\$or][1][description][\$contains]=$q"
+            ep += "?filters[\$or][0][title][\$contains]=$q&filters[\$or][1][description][\$contains]=$q"
             Log.v(TAG, ep)
         }
 
@@ -69,13 +69,14 @@ class ListActivity : AppCompatActivity(), MaterialSearchBar.OnSearchActionListen
             Request.Method.GET, ep, null,
             {
                 val res = Gson().fromJson(it.toString(), OprecsResult::class.java)
+                Log.v(TAG, res.toString())
 
                 oprecs.clear()
                 oprecs.addAll(res.data)
                 recyclerView.adapter?.notifyDataSetChanged();
             },
             {
-
+                Log.e(TAG, it.toString())
                 Snackbar.make(
                     recyclerView,
                     "Ada yang salah",

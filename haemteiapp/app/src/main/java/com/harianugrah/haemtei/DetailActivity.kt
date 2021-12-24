@@ -112,7 +112,8 @@ class DetailActivity : AppCompatActivity() {
                 textStart.text = dateStart
                 textEnd.text = dateEnd
 
-                if (AuthSingleton.currentUser?.username == data?.owner?.username) {
+                Log.v(TAG, data?.owner.toString());
+                if (AuthSingleton.currentUser?.username == data?.owner?.username || data?.owner == null || data?.owner?.id == null) {
                     btnDelete.visibility = View.VISIBLE
                 }
 
