@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sies",
+  "info": {
+    "singularName": "sie",
+    "pluralName": "sies",
+    "displayName": "Sie"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "oprecs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::oprec.oprec",
+      "mappedBy": "sies"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_oprecs",
+  "info": {
+    "singularName": "user-oprec",
+    "pluralName": "user-oprecs",
+    "displayName": "User_Oprec",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "oprec": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::oprec.oprec"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "reason": {
+      "type": "richtext"
+    },
+    "experience": {
+      "type": "richtext"
+    }
+  }
+}
